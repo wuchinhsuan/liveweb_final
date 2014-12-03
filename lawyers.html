@@ -3,7 +3,7 @@
 
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 <script type="text/javascript">
 var canvas, ctx, flag = false,
     prevX = 0,
@@ -127,7 +127,7 @@ function findxy(res, e) {
 </script>
 
 <script>
-
+  
 $(document).ready(function() {
     var max_fields      = 10; //maximum input boxes allowed
     var wrapper         = $(".input_fields_wrap"); //Fields wrapper
@@ -138,23 +138,29 @@ $(document).ready(function() {
         e.preventDefault();
         if(x < max_fields){ //max input box allowed
             x++; //text box increment
-            $(wrapper).append('<div><input type="text" name="mytext[]"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
+         if( $(wrapper).append('<div class="inputing"><input type="text" name="mytext[]"/><a href="#" class="remove_field">Remove</a></div>')){
+          $(".inputing").draggable();
+         
+         }//add input box  
+         
+         /* $(wrapper).append('<div class="inputing"><input type="text" name="mytext[]"/><a href="#" class="remove_field">Remove</a></div>'); //add input box */
+   
+           
         }
     });
     
     $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
         e.preventDefault(); $(this).parent('div').remove(); x--;
     })
+  
 });
+
+
 
 </script>
 
 	<style>
-	#colorWrap{
-		position:absolute;
-		top:150;
-		left:600;
-	}
+	
 	#eraserWrap{
 		position:absolute;
 		top:250;
@@ -184,27 +190,46 @@ $(document).ready(function() {
 		border: dashed;
 		
 	}
-	.feed{
-		padding: 5px 0;
+	.input_fields_wrap{
+		background: #f0b1b1;
 	}
+	.inputing{
+		background: #8f1010;
+	}
+	#blue{
+		display: block;
+		background: blue;
+		width:100;
+		height:100;
+		top:100;
+		left:500;
+		position: absolute;
+
+	}
+		
 	</style>
 </head>
 
 <body onload="init()">
-
-
+<script>
+$(function() {
+    $(".input_fields_wrap .inputing").draggable();
+    //$(".inputing").draggable();
+      });
+  
+</script>
 
     <canvas id="can" width="400" height="400" style="position:absolute;top:10%;left:10%;border:2px solid;"></canvas>
    
      <div id="countrysideB"></div>
-     
+     <div id="blue"></div>
      
      <div class="input_fields_wrap">
     <button class="add_field_button">Add</button>
-    <div><input type="text" name="mytext[]"></div>
+    <div class="inputing"><input type="text" name="mytext[]"></div>
 </div>
-   <!--  <div style="position:absolute;top:12%;left:73%;">Choose Color</div> -->
-    
+ 
+  
        <div id="eraserWrap">
     <div style="position:realtive;top:15%;left:43%;">Eraser</div>
     <div style="position:relative;top:22%;left:20%;width:15px;height:15px;background:white;border:2px solid;" id="white" onclick="color(this)"></div>
