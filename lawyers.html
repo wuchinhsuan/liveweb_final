@@ -12,35 +12,28 @@ var canvas, ctx, flag = false,
     prevY = 0,
     currY = 0,
     dot_flag = false;
-
 var x = document.getElementById('color'),
     /* y = 7; */
     y = document.getElementById('range');
-
 function init() {
     canvas = document.getElementById('can');
     ctx = canvas.getContext("2d");
     w = canvas.width;
     h = canvas.height;
-
     //Loading of the home test image - img1
         var img1 = new Image();
-
         //drawing of the test image - img1
         img1.onload = function () {
             //draw background image
             ctx.drawImage(img1, 100, 0, 300, 300);
        
         };
-
         img1.src = 'images/boat4.png';
         
         var myVar = setInterval(function(){myTimer()}, 100);
-
         function myTimer() {
              img1.onload();
          }
-
     canvas.addEventListener("mousemove", function (e) {
         findxy('move', e)
     }, false);
@@ -54,18 +47,14 @@ function init() {
         findxy('out', e)
     }, false);
 }
-
 function color(obj) {
     switch (obj.id) {
         case "white":
             x = "white";
             break;
     }
-
  if (x == "white") y = document.getElementById('range');
-
 }
-
 function draw() {
     ctx.beginPath();
     ctx.moveTo(prevX, prevY);
@@ -75,7 +64,6 @@ function draw() {
     ctx.stroke();
     ctx.closePath();
 }
-
 function erase() {
     var m = confirm("Want to clear");
     if (m) {
@@ -83,7 +71,6 @@ function erase() {
         document.getElementById("canvasimg").style.display = "none";
     }
 }
-
 function save() {
     /*
 document.getElementById("canvasimg").style.border = "2px solid";
@@ -93,14 +80,12 @@ document.getElementById("canvasimg").style.border = "2px solid";
 */
     document.getElementById("countrysideB").style.display = "block";
 }
-
 function findxy(res, e) {
     if (res == 'down') {
         prevX = currX;
         prevY = currY;
         currX = e.clientX - canvas.offsetLeft;
         currY = e.clientY - canvas.offsetTop;
-
         flag = true;
         dot_flag = true;
         if (dot_flag) {
@@ -123,7 +108,6 @@ function findxy(res, e) {
             draw();
         }
     }
-
 }
 </script>
 
@@ -155,52 +139,49 @@ $(document).ready(function() {
     })
   
 });
-
-
-
 </script>
 
-	<style>
-	
-	#eraserWrap{
-		position:absolute;
-		top:250;
-		left:600;
-	}
-	#color{
-		position:absolute;
-		top:200;
-		left:600;
-	
-	}
-	#rangecolor{
-		position:absolute;
-		top:225;
-		left:600;
-	}
-	#countrysideB{
-		/* display: solid; */
-		display: none;
-		background: blue;
-		color:green;
-		width:800;
-		height:100;
-		position: absolute;
-		top:500;
-		left:800;
-		border: dashed;
-		
-	}
-	.input_fields_wrap{
-		/* background: #f0b1b1; */
-		width: 150;
-		height:30;
-	}
-	.inputing{
-		/* background: #8f1010; */
-	}
-			
-	</style>
+    <style>
+    
+    #eraserWrap{
+        position:absolute;
+        top:250;
+        left:600;
+    }
+    #color{
+        position:absolute;
+        top:200;
+        left:600;
+    
+    }
+    #rangecolor{
+        position:absolute;
+        top:225;
+        left:600;
+    }
+    #countrysideB{
+        /* display: solid; */
+        display: none;
+        background: blue;
+        color:green;
+        width:800;
+        height:100;
+        position: absolute;
+        top:500;
+        left:800;
+        border: dashed;
+        
+    }
+    .input_fields_wrap{
+        /* background: #f0b1b1; */
+        width: 150;
+        height:30;
+    }
+    .inputing{
+        /* background: #8f1010; */
+    }
+            
+    </style>
 </head>
 
 <body onload="init()">
@@ -238,11 +219,10 @@ $(function() {
      <input id="rangecolor" type="range" min="1" max="20" value="1" onchange="showValue(this.value)" />
      <!--  <span id="range">0</span> -->
       <script type="text/javascript">
-		  function showValue(newValue)
-		  {
-		y=newValue;
-
-		}
+          function showValue(newValue)
+          {
+        y=newValue;
+        }
 </script>
    
     
