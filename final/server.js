@@ -3,7 +3,7 @@ var http = require('http');
 var fs = require('fs'); // Using the filesystem module
 var httpServer = http.createServer(requestHandler);
 var url = require('url');
-httpServer.listen(8080);
+httpServer.listen(8082);
 
 function requestHandler(req, res) {
 
@@ -124,6 +124,14 @@ io.sockets.on('connection',
 		// 	console.log("Received: 'sharon' " + sharondata);
 		// 	io.sockets.emit('sharon', sharondata);
 		// });
+		socket.on('frame', function(data) {
+			// Data comes in as whatever was sent, including objects
+			console.log("Received: 'frame' " + data);
+			
+			// Send it to all of the clients
+			io.emit('frame', data);
+			/* socket.broadcast.emit('backcolor', data); */
+		});
 
 
 		

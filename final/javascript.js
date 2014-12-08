@@ -1,4 +1,4 @@
-  var socket = io.connect('http://104.131.39.173:8080/');
+  var socket = io.connect('http://104.131.93.171:8082/');
 
   var facesDragged = [0,0,0,0,0,0];
 
@@ -39,6 +39,7 @@ function call(){
             
             
             console.log(facesDragged);
+            socket.emit('frame', facesDragged);
 
 
             var $clone = ui.helper.clone();
@@ -51,8 +52,28 @@ function call(){
     });
 
   });
+  
+  
+socket.on('connect', function() {
+				console.log("Connected please");
+				
+				/* console.log("mobile"); */
+			});
 
-socket.on('databack', function() {
-    socket.emit('ppl',facesDragged);
-});
+
+var sendFrame = function (frame){
+					console.log("framing" + frame);
+					socket.emit('frame', frame);
+					/* document.body.style.backgroundColor = "yellow"; */
+			};
+
+
+/*
+var sendFamily = function(facesDragged){
+	
+					console.log(facesDragged);
+					socket.emit('family', facesDragged);
+					
+			};
+*/
 
